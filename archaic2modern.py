@@ -11,10 +11,17 @@ def get_unique_id():
 def to_yaml(dict_):
     return yaml.safe_dump(dict_, sort_keys=False, allow_unicode=True)
 
+def clean_word(word):
+    unwanteds = ['ཞེས་པ་', 'དང༌', 'ཞེས་པ']
+    for unwanted in unwanteds:
+        word = word.replace(unwanted, '')
+    return word
+
 def parse_archaic2modern(words):
     archaic2modern = {}
     cur_word = {}
     for word_walker, word in enumerate(words,1):
+        word = clean_word(word)
         if word_walker%2==0:
             cur_word['modern'] = word
             archaic2modern[get_unique_id()] = cur_word
