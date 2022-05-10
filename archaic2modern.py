@@ -33,7 +33,7 @@ def parse_archaic2modern(words):
     archaic2modern = {}
     cur_word = {}
     for word_walker, word in enumerate(words,1):
-        word = clean_word(word)
+        # word = clean_word(word)
         if word_walker%2==0:
             cur_word['modern'] = parse_modern_word(word)
             archaic2modern[get_unique_id()] = cur_word
